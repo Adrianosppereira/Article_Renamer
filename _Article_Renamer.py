@@ -9,7 +9,10 @@ crossref = 'http://api.crossref.org/'
 
 if __name__ == '__main__':
     dr = os.getcwd()
-    for pdf in glob(os.path.join(dr, "*.pdf")):
+    nRenamedArticles = 0
+    files = glob(os.path.join(dr, "*.pdf"))
+    nFiles = len(files)
+    for pdf in files:
         pdfReader = PyPDF2.PdfFileReader(pdf, strict=False)
         if pdfReader.isEncrypted:
             # print (pdf)
@@ -24,18 +27,41 @@ if __name__ == '__main__':
                 doi = v
             if not doi and 'doi:' in v.lower():
                     doi = v.replace('doi:','')
+            if not doi and 'doi ' in v.lower():
+                    doi = v.replace('doi ','')
             if not doi:
+                ## Read the number of pages
+                numberOfPages = pdfReader.getNumPages()
+                ## Register text from Page 1
                 text_in_file = pdfReader.getPage(0).extractText().lower()
-                if pdfReader.getNumPages() > 1:
+                if numberOfPages > 1:
                     text_in_file = text_in_file + ' ' + pdfReader.getPage(1).extractText().lower()
-                text_in_file = text_in_file.replace('\n', ' ').replace('correspondingauthor', ' ').replace('contentslistsavailable', ' ').replace(']', ' ').replace('[', ' ')
+                if numberOfPages > 5 and 'doi' not in text_in_file:
+                    text_in_file = text_in_file + ' ' + pdfReader.getPage(2).extractText().lower() + ' ' + pdfReader.getPage(3).extractText().lower() + ' ' + pdfReader.getPage(4).extractText().lower()+ ' ' + pdfReader.getPage(5).extractText().lower()
+                ## Clean registered text and isolate doi
+                text_in_file = text_in_file.replace('\n', ' ').replace('correspondingauthor', ' ').replace('contentslistsavailable', ' ').replace(']', ' ').replace('[', ' ').replace('©', ' ')
+                ##
                 if 'doi:' in text_in_file:
                     doi_index_start = text_in_file.find('doi:')
                     doi_index_end = text_in_file.find(' ', doi_index_start) 
                     DIO = text_in_file[slice(doi_index_start+4,doi_index_end)]
                     if DIO.startswith('10'):
-                        # print(DIO)
+                        # print('DIOOO = ' + DIO)
                         doi = DIO
+                if not doi and 'doi.org/' in text_in_file:
+                    doi_index_start = text_in_file.find('doi.org/')
+                    doi_index_end = text_in_file.find(' ', doi_index_start) 
+                    DIO = text_in_file[slice(doi_index_start+8,doi_index_end)]
+                    if DIO.startswith('10'):
+                        # print('DIOOO = ' + DIO)
+                        doi = DIO   
+                if not doi and 'doi' in text_in_file:
+                    doi_index_start = text_in_file.find('doi')
+                    doi_index_end = text_in_file.find(' ', doi_index_start) 
+                    DIO = text_in_file[slice(doi_index_start+3,doi_index_end)]
+                    if DIO.startswith('10'):
+                        # print('DIOOO = ' + DIO)
+                        doi = DIO                   
             if not doi and 'title' in k.lower():
                 title = v
                 
@@ -65,7 +91,9 @@ if __name__ == '__main__':
             if os.path.exists(filename):
                 filename = filename.replace('.pdf', '-RPT.pdf')
             shutil.move(pdf, filename)
+            nRenamedArticles = nRenamedArticles + 1
+            
     print('DONE!')
+    print(f'{nRenamedArticles} out of {nFiles} .pdf files were renamed')
 
-## by Denise.a.g and Adriano.s.p.p - 16/06/2020
-## for V2 maybe use the pdftotext library instead PyPDF2 and focus in getting text out of the more annoying pdfs.
+## by Denise.a.g and Adriano.s.p.p - 09/07/2020
