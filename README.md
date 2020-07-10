@@ -28,9 +28,11 @@ Everything required to execute these scripts occupy around 150 MB.
 	- https://pip.pypa.io/en/stable/installing/
 
 3. Install the python libraries required, for such run in Windows command prompt the following:
+	
 	`pip install requests==2.22.0 PyPDF2==1.26.0 glob2==0.7`
 	
-	Alternatively, use the requirements file by running the command line from the same directory: 
+	Alternatively, use the requirements file by running the command line from the same directory:
+
 	`pip install -r requirements.txt`
 
 ## USAGE:
@@ -43,7 +45,7 @@ Everything required to execute these scripts occupy around 150 MB.
 
 4. Wait
 
-5. When you see the 'DONE!'
+5. When you see the 'DONE!', well its done.
 
 ## NOTES:
 
