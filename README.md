@@ -14,7 +14,7 @@ The scripts were proven to work for most scientific articles and books, falling 
 	- .pdf file is cursed.
 
 ### ATENTION: 
-If you have suggestions in how to improve these scripts, please comment about it on github or open an issue in it. I will be more than happy to add your contributions and, of course, share the credits. However, keep in mind that the idea is to make something simple, that does not requires the download of huge python libraries or support software, for example, the Microsoft Visual Tools required by the pdftotext python library.
+If you have suggestions in how to improve these scripts, please comment about it on github or open an issue over it. I will be more than happy to add your contributions and, of course, share the credits. However, keep in mind that the idea is to make something simple, that does not requires the download of huge python libraries or support software, for example, the Microsoft Visual Tools required by the pdftotext python library.
 
 --------------------------------
 ## INSTALATION:
@@ -40,9 +40,9 @@ Everything required to execute these scripts occupy around 150 MB.
 
 ## USAGE:
 
-1. Make a copy of the Article_Renamer_Title_Year.py or the Article_Renamer_Year_Title.py and drag it to the desired folder.
+1. Make a copy of the Article_Renamer_Title_Year.py or the Article_Renamer_Year_Title.py and drag it to the desired folder containing the .pdf files to be renamed.
 
-2. Right click over it and select 'Edit with IDLE'
+2. Right click over the copied script and select 'Edit with IDLE'
 
 3. Once it opens, Press F5
 
