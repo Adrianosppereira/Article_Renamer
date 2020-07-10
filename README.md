@@ -57,3 +57,8 @@ Everything required to execute these scripts occupy around 150 MB.
 2. Repeated files are renamed with a -RPT after them
 
 3. Running the script twice will add -RPT to all file names.
+
+
+
+
+Writen by Adriano.S.P.P and Denise.A.G. - 09/07/2020; inpired by NECESSITY and user "Pu Du" from Researchgate.net
