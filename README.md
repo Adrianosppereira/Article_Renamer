@@ -14,7 +14,7 @@ The scripts were proven to work for most scientific articles and books, falling 
 	- .pdf file is cursed.
 
 ### ATENTION: 
-If you have suggestions in how to improve these scripts, please comment about it on github or open an issue over it. However, keep in mind that the idea is to make something simple, that does not requires the download of huge python libraries or support software, for example, the Microsoft Visual Tools required by the pdftotext python library.
+If you have suggestions in how to improve these scripts, please comment about it on github or open an issue over it. Only, please, keep in mind that the idea is to make something simple, that does not requires the download of huge python libraries or support software, for example, the Microsoft Visual Tools required by the pdftotext python library.
 
 --------------------------------
 ## INSTALATION:
